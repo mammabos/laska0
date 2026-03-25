@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Для Ілюші ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(to top, #ff758c, #ff7eb3);
+    overflow: hidden;
+    font-family: Arial;
+    color: white;
+    text-align: center;
+}
+
+#text {
+    margin-top: 40vh;
+    font-size: 28px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: white;
+    border: none;
+    border-radius: 10px;
+}
+
+#secret {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {transform: translateY(-10%);}
+    100% {transform: translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="text"></div>
+
+<button onclick="showSecret()">Відкрити секрет 💌</button>
+
+<div id="secret">Ілюша, я тебе дуже сильно кохаю ❤️</div>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+let message = "Привіт, Ілюша...";
+let i = 0;
+
+function typeText() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeText, 100);
+    }
+}
+typeText();
+
+function showSecret() {
+    document.getElementById("secret").style.display = "block";
+}
+
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
